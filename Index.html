@@ -122,4 +122,28 @@
                     // HTML structure for each game
                     gameCard.innerHTML = `
                         <img src="https://via.placeholder.com/150" alt="${game.name}">
-                        <h3>${game.name}</
+                        <h3>${game.name}</h3>
+                        <p><strong>Genre ID:</strong> ${game.genreId}</p>
+                        <p><strong>Release Date:</strong> ${new Date(game.releaseDate).toLocaleDateString()}</p>
+                        <p>${game.description}</p>
+                        <p class="download-info">Downloads: ${game.downloads}</p>
+                        <p class="download-info">Rating: ${game.stars} ★</p>
+                    `;
+
+                    // Append the game card to the container
+                    gameListContainer.appendChild(gameCard);
+                });
+            })
+            .catch(error => {
+                loadingIndicator.style.display = 'none';
+                errorIndicator.style.display = 'block';
+                console.error('Error fetching games:', error);
+            });
+    }
+
+    // Call the fetchGames function to load the data on page load
+    window.onload = fetchGames;
+</script>
+
+</body>
+</html>
